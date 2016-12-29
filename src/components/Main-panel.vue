@@ -16,7 +16,7 @@
             <td>
               <div class="panel panel-default">
                 <div class="panel-heading">
-                  <h3 class="panel-title">{{ message.username }} @ {{ message.date }}</h3>
+                  <h3 class="panel-title">{{ message.username }} @ {{ message.date | date-format }}</h3>
                 </div>
                 <div class="panel-body" >
                   {{ message.description }}
@@ -33,6 +33,14 @@
 </template>
 
 <script>
+  import Vue from 'vue'
+
+  Vue.filter('date-format', function (value) {
+    let date = value.split('T')[0];
+    let time = value.split('T')[1].split('+')[0].substring(0,5);
+    return date + " " + time;
+  });
+
   export default {
         
         name: 'main-panel',
