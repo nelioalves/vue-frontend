@@ -1,0 +1,67 @@
+<template>
+<div >
+  <div class="row">
+    <div class="col-md-4">
+      <!-- <login></login> -->
+    </div>
+    <div class="col-md-8">
+      <table id="myTable" width="100%">
+        <thead>
+          <tr>
+            <th>Message List</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="message in messages">
+            <td>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">{{ message.username }} @ {{ message.date }}</h3>
+                </div>
+                <div class="panel-body" >
+                  {{ message.description }}
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div id="bottom"></div>
+</div>
+</template>
+
+<script>
+  export default {
+        
+        name: 'main-panel',
+        data () {
+          return {
+            // msg : 'main-panel',
+            messages : ''
+          }
+        }, 
+        created: function () {
+          this.getMessages();
+        },
+        methods : {
+          getMessages () {
+            this.$http.get('http://localhost:8081/message').then((res) => {
+              this.messages = res.body._embedded.message.reverse();
+              console.log(this.messages);
+            }, (err) => {
+              console.log(err);
+            });
+          }
+        }
+
+      }
+</script>
+
+<style type="text/css">
+      
+      #bottom {
+        padding-bottom: 50px;
+      }
+    </style>
