@@ -9,9 +9,10 @@
 
 <script>
 import Navbar from './components/Navbar'
+import MainPanel from './components/Main-panel'
 
 export default {
-  components: { Navbar }
+  components: { Navbar, MainPanel }
 }
 </script>
 
