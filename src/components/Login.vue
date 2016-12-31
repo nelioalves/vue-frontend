@@ -22,17 +22,17 @@
       <a class="btn btn-warning" @click="logout">Logout</a>
       <br><br>
       <div>
-        <post-message></post-message>
+        <post-message></post-message> <!-- now working -->
       </div>
     </div>
   </div>
 </template>
 
 <script type="text/javascript">
-  //import PostMessage from './Post-message'
+  import PostMessage from './Post-message'
 
   export default {
-    //components: {PostMessage},
+    components: {PostMessage},
     name: 'login',
     data() {
       return {
